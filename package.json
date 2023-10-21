@@ -1,0 +1,42 @@
+{
+  "name": "fdj-forecast",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "scripts": {
+    "build": "rimraf dist && npx tsc",
+    "lint": "gts lint",
+    "lint:fix": "gts fix",
+    "clean": "gts clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ealenn/fdj-forecast.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ealenn/fdj-forecast/issues"
+  },
+  "homepage": "https://github.com/Ealenn/fdj-forecast#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/papaparse": "^5.x",
+    "gts": "^5.x",
+    "rimraf": "^5.x",
+    "typescript": "^5.x"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.x",
+    "@nestjs/core": "^10.x",
+    "brain.js": "^2.0.0-beta.23",
+    "colorette": "^2.x",
+    "csv": "^6.x",
+    "moment": "^2.x",
+    "nest-commander": "^3.x",
+    "papaparse": "^5.x"
+  }
+}
