@@ -2,20 +2,23 @@ import {DatasetUnified} from '../../core/models/dataset-unified';
 import * as Brain from 'brain.js';
 import {LoggerService} from './logger.service';
 import {Injectable} from '@nestjs/common';
-import {
-  NeuralNetworkInput,
-  NeutralNetworkDatasetService,
-} from './neutral-network-dataset.service';
+import {NeuralNetworkDatasetService} from './neural-network-dataset.service';
 import {INeuralNetworkJSON} from 'brain.js/dist/neural-network';
+import {
+  NeuralNetworkRollInput,
+  NeuralNetworkRollOutput,
+} from '../../core/models';
 
 @Injectable()
-export class NeutralNetworkService {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private readonly network: Brain.NeuralNetwork<NeuralNetworkInput, any>;
+export class NeuralNetworkService {
+  private readonly network: Brain.NeuralNetwork<
+    NeuralNetworkRollInput,
+    NeuralNetworkRollOutput
+  >;
 
   constructor(
     private readonly loggerService: LoggerService,
-    private readonly neutralNetworkDatasetService: NeutralNetworkDatasetService
+    private readonly neutralNetworkDatasetService: NeuralNetworkDatasetService
   ) {
     this.network = new Brain.NeuralNetwork({
       log: status => {
@@ -59,10 +62,12 @@ export class NeutralNetworkService {
     }
 
     const sortedForecast = forecast.sort((a, b) => {
-      return a[1] - b[1];
+      return (a[1] as number) - (b[1] as number);
     });
     this.loggerService.debug(`Sort forecast ${sortedForecast}`);
 
-    return sortedForecast.slice(sortedForecast.length - 5).map(x => x[0]);
+    return sortedForecast
+      .slice(sortedForecast.length - 5)
+      .map(x => x[0]) as number[];
   }
 }

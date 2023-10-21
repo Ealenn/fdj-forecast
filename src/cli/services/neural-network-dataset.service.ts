@@ -1,17 +1,13 @@
 import {Injectable} from '@nestjs/common';
 import {DatasetUnified} from '../../core/models/dataset-unified';
-
-export type NeuralNetworkInput = {
-  dd: number;
-  mm: number;
-  yyyy: number;
-};
-
-export type NeuralNetworkOutput = Record<string, number>;
+import {
+  NeuralNetworkRollInput,
+  NeuralNetworkRollOutput,
+} from '../../core/models';
 
 @Injectable()
-export class NeutralNetworkDatasetService {
-  public getNeuralNetworkInput(date: Date): NeuralNetworkInput {
+export class NeuralNetworkDatasetService {
+  public getNeuralNetworkInput(date: Date): NeuralNetworkRollInput {
     return {
       dd: date.getDate(),
       mm: date.getMonth(),
@@ -19,7 +15,9 @@ export class NeutralNetworkDatasetService {
     };
   }
 
-  public getNeuralNetworkOutput(dataset: DatasetUnified): NeuralNetworkOutput {
+  public getNeuralNetworkOutput(
+    dataset: DatasetUnified
+  ): NeuralNetworkRollOutput {
     const result = {};
     for (let number = 1; number <= 49; number++) {
       if (

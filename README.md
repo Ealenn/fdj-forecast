@@ -62,5 +62,6 @@ $ DEBUG=* node dist/src/cli/main.js [options] [command]
 ```sh
 $ node dist/src/cli/main.js neural-network -m ./dataset/model.json
 
+[INFO] Generate forecast...
 [ '22', '30', '7', '48', '26' ]
 ```

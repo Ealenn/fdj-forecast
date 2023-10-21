@@ -3,16 +3,16 @@ import {DatasetCommand} from './commands/dataset.command';
 import {LoggerService} from './services/logger.service';
 import {CsvService} from './services/csv-service';
 import {NeuralNetworkCommand} from './commands/neural-network.command';
-import {NeutralNetworkService} from './services/neutral-network.service';
-import {NeutralNetworkDatasetService} from './services/neutral-network-dataset.service';
+import {NeuralNetworkService} from './services/neural-network.service';
+import {NeuralNetworkDatasetService} from './services/neural-network-dataset.service';
 
 @Module({
   imports: [],
   providers: [
     LoggerService,
     CsvService,
-    NeutralNetworkService,
-    NeutralNetworkDatasetService,
+    NeuralNetworkService,
+    NeuralNetworkDatasetService,
     DatasetCommand,
     NeuralNetworkCommand,
   ],

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import {LoggerService} from '../services/logger.service';
 import {DatasetUnified} from '../../core/models/dataset-unified';
 import * as Path from 'path';
-import {NeutralNetworkService} from '../services/neutral-network.service';
+import {NeuralNetworkService} from '../services/neural-network.service';
 
 interface NeuralNetworkOptions {
   readonly path?: string;
@@ -17,7 +17,7 @@ interface NeuralNetworkOptions {
 export class NeuralNetworkCommand extends CommandRunner {
   constructor(
     private readonly loggerService: LoggerService,
-    private readonly neutralNetworkService: NeutralNetworkService
+    private readonly neutralNetworkService: NeuralNetworkService
   ) {
     super();
   }
