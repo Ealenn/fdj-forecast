@@ -2,7 +2,7 @@ import {
   MagicNeuralNetworkService,
   RollNeuralNetworkService,
   DatasetUnified,
-} from 'fdj-forecast-core/dist/src';
+} from 'fdj-forecast-core';
 import {LoggerService} from './logger.service';
 import * as fs from 'fs';
 import * as Path from 'path';

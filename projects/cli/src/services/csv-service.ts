@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import {DatasetUnified} from 'fdj-forecast-core/dist/src';
+import {DatasetUnified} from 'fdj-forecast-core';
 import * as CSVParser from 'papaparse';
 import {Injectable} from '@nestjs/common';
 import * as fs from 'fs';

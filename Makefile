@@ -33,21 +33,25 @@ help: ##@other Show this help.
 init: ##@project Initialize local environment.
 	@npm --prefix ./projects/core ci
 	@npm --prefix ./projects/cli ci
+	@npm --prefix ./projects/web ci
 
 .PHONY: upgrade
 upgrade: ##@project Reinstall all Node Packages with Latest version (upgrade packages).
 	@npm --prefix ./projects/core install --prefer-online
 	@npm --prefix ./projects/cli install --prefer-online
+	@npm --prefix ./projects/web install --prefer-online
 
 .PHONY: build
 build: ##@project Build local sources.
 	@npm --prefix ./projects/core run build
 	@npm --prefix ./projects/cli run build
+	@npm --prefix ./projects/web run build
 
 .PHONY: lint
 lint: ##@project Lint and fix local sources.
 	@npm --prefix ./projects/core run lint:fix
 	@npm --prefix ./projects/cli run lint:fix
+	@npm --prefix ./projects/web run format
 
 # ---------------------------------------------------------------------
 #                            Dataset
@@ -72,3 +76,7 @@ models: build ##@dataset Generate Neural Network models from dataset.
 roll: build ##@run Run prediction.
 	@node projects/cli/dist/src/main.js predict-roll -m ./dataset/roll.model.json
 	@node projects/cli/dist/src/main.js predict-magic -m ./dataset/magic.model.json
+
+.PHONY: web
+web: build ##@run Serve static website.
+	@npx serve ./projects/web/dist
