@@ -1,5 +1,5 @@
 {
-  "name": "fdj-forecast",
+  "name": "fdj-forecast-cli",
   "version": "1.0.0",
   "description": "",
   "type": "commonjs",
@@ -32,9 +32,9 @@
   "dependencies": {
     "@nestjs/common": "^10.x",
     "@nestjs/core": "^10.x",
-    "brain.js": "^2.0.0-beta.23",
     "colorette": "^2.x",
     "csv": "^6.x",
+    "fdj-forecast-core": "file:../core",
     "moment": "^2.x",
     "nest-commander": "^3.x",
     "papaparse": "^5.x"
