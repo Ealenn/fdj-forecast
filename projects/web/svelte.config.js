@@ -21,6 +21,8 @@ const config = {
 		})
 	}
 };
+
+console.log('BASE_PATH ' + process.env.BASE_PATH);
 config.paths = { base: process.argv.includes('dev') ? '' : process.env.BASE_PATH };
 
 export default config;
