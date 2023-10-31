@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
+const isDevEnvironment = process.env.NODE_ENV === 'development';
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte'],
@@ -17,12 +19,12 @@ const config = {
 			assets: 'dist',
 			pages: 'dist',
 			precompress: true,
-			strict: true
-		})
-	}
+			strict: true,
+		}),
+    paths: {
+      base: isDevEnvironment ? '' : process.env.BASE_PATH,
+    },
+	},
 };
-
-console.log('BASE_PATH ' + process.env.BASE_PATH);
-config.paths = { base: process.argv.includes('dev') ? '' : process.env.BASE_PATH };
 
 export default config;
