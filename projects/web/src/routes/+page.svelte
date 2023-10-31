@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Table, tableMapperValues, type TableSource } from '@skeletonlabs/skeleton';
+	import { Avatar, Table, tableMapperValues, type TableSource } from '@skeletonlabs/skeleton';
 	import { RollNeuralNetworkService, MagicNeuralNetworkService } from 'fdj-forecast-core';
 
 	const rollNeuralNetworkService = new RollNeuralNetworkService();
@@ -41,6 +41,41 @@
 	};
 </script>
 
-<div class="container h-full mt-12 mb-12 mx-auto flex justify-center items-center">
-	<Table source={tableSimple} />
-</div>
+<svelte:head>
+	<title>FDJ Forecast - Artificial intelligence for the French lottery (Française Des Jeux)</title>
+</svelte:head>
+
+<main>
+	<div class="container h-full mt-12 mb-12 p-1 mx-auto justify-center items-center">
+		<div class="card variant-soft mb-10">
+			<header class="card-header">
+				<h1 class="h1">FDJ Forecast</h1>
+			</header>
+			<section class="p-4">
+				<p>
+					This GitHub project is an artificial intelligence and neural networks to generate
+					forecasts and predictions for lottery numbers.
+				</p>
+
+				<p>
+					It's important to note that using neural networks or any form of AI to predict lottery
+					numbers is for educational and entertainment purposes only.
+				</p>
+
+				<p>
+					The lottery is a game of chance, and no prediction system can guarantee winning numbers.
+				</p>
+			</section>
+			<footer class="card-footer flex justify-center items-center">
+				<a href="https://github.com/Ealenn/fdj-forecast" class="btn variant-soft">
+					<span>
+						<Avatar src="https://avatars.githubusercontent.com/u/13718470?v=4&s=32" width="w-8" />
+					</span>
+					<span>Ealenn/FDJ-Forecast</span>
+				</a>
+			</footer>
+		</div>
+
+		<Table source={tableSimple} />
+	</div>
+</main>

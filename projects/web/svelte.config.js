@@ -19,12 +19,12 @@ const config = {
 			assets: 'dist',
 			pages: 'dist',
 			precompress: true,
-			strict: true,
+			strict: true
 		}),
-    paths: {
-      base: isDevEnvironment ? '' : process.env.BASE_PATH,
-    },
-	},
+		paths: {
+			base: isDevEnvironment ? '' : process.env.BASE_PATH
+		}
+	}
 };
 
 export default config;

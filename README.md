@@ -17,6 +17,12 @@ It's important to note that using neural networks or any form of AI to predict l
 
 The lottery is a game of chance, and no prediction system can guarantee winning numbers.
 
+<p align="center">
+  <a href="https://ealenn.github.io/fdj-forecast/">
+    <img src="https://img.shields.io/badge/Open-Website-blue.svg?style=for-the-badge" alt="Open Now"/>
+  </a>
+</p>
+
 ## Roadmap
 
 - [x] Metadata / Dataset
@@ -42,10 +48,13 @@ project:
   init                            Initialize local environment.
   upgrade                         Reinstall all Node Packages with Latest version (upgrade packages).
   build                           Build local sources.
-  lint                            Lint and fix local sources.
+  lint                            Lint local sources.
+  lint-fix                        Lint and fix local sources.
 
 run:
   roll                            Run prediction.
+  web                             Serve static website.
+  web-dev                         Serve website with hot reload.
 ```
 
 ## Local environment

@@ -27,6 +27,10 @@ jobs:
       - name: Install dependencies
         run: make init
 
+      - name: lint
+        run: |
+          make lint
+
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'

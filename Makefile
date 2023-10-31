@@ -48,7 +48,13 @@ build: ##@project Build local sources.
 	@npm --prefix ./projects/web run build
 
 .PHONY: lint
-lint: ##@project Lint and fix local sources.
+lint: ##@project Lint local sources.
+	@npm --prefix ./projects/core run lint
+	@npm --prefix ./projects/cli run lint
+	@npm --prefix ./projects/web run lint
+
+.PHONY: lint-fix
+lint-fix: ##@project Lint and fix local sources.
 	@npm --prefix ./projects/core run lint:fix
 	@npm --prefix ./projects/cli run lint:fix
 	@npm --prefix ./projects/web run format
@@ -80,3 +86,7 @@ roll: build ##@run Run prediction.
 .PHONY: web
 web: build ##@run Serve static website.
 	@npx serve ./projects/web/dist
+
+.PHONY: web-dev
+web-dev: build ##@run Serve website with hot reload.
+	@npm --prefix ./projects/web run dev
