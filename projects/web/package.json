@@ -1,0 +1,46 @@
+{
+	"name": "fdj-forecast-web",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.x",
+		"@skeletonlabs/skeleton": "2.x",
+		"@skeletonlabs/tw-plugin": "0.x",
+		"@sveltejs/adapter-auto": "^2.x",
+		"@sveltejs/adapter-static": "^2.x",
+		"@sveltejs/kit": "^1.x",
+		"@tailwindcss/forms": "0.x",
+		"@tailwindcss/typography": "0.x",
+		"@types/node": "20.x",
+		"@typescript-eslint/eslint-plugin": "^6.x",
+		"@typescript-eslint/parser": "^6.x",
+		"autoprefixer": "10.x",
+		"eslint": "^8.x",
+		"eslint-config-prettier": "^8.x",
+		"eslint-plugin-svelte": "^2.x",
+		"postcss": "8.x",
+		"prettier": "^2.x",
+		"prettier-plugin-svelte": "^2.x",
+		"svelte": "^4.x",
+		"svelte-check": "^3.x",
+		"tailwindcss": "3.x",
+		"tslib": "^2.x",
+		"typescript": "^5.x",
+		"vite": "^4.x",
+		"vite-plugin-tailwind-purgecss": "0.x"
+	},
+	"type": "module",
+	"dependencies": {
+		"@floating-ui/dom": "1.x",
+		"fdj-forecast-core": "file:../core"
+	}
+}

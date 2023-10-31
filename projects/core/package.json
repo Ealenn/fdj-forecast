@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "scripts": {
     "build": "rimraf dist && npx tsc",
     "lint": "gts lint",

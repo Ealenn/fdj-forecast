@@ -1,7 +1,7 @@
 import {Command, CommandRunner, Option} from 'nest-commander';
 import * as fs from 'fs';
 import {LoggerService} from '../services/logger.service';
-import {RollNeuralNetworkService} from 'fdj-forecast-core/dist/src';
+import {RollNeuralNetworkService} from 'fdj-forecast-core';
 
 interface PredictRollCommandOptions {
   readonly modelPath: string;
