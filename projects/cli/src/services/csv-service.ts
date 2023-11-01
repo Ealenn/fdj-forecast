@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import {DatasetUnified} from 'fdj-forecast-core';
+import {DatasetUnified} from 'fdj-forecast-core/dist/src';
 import * as CSVParser from 'papaparse';
 import {Injectable} from '@nestjs/common';
 import * as fs from 'fs';
@@ -24,10 +24,9 @@ export class CsvService {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const row = csvRow as any;
       result.push({
-        date: moment(
-          row[options.date.colomnIndex],
-          options.date.format
-        ).toDate(),
+        date: moment(row[options.date.colomnIndex], options.date.format)
+          .toDate()
+          .toISOString(),
         roll: [
           parseInt(row[options.roll.colomnIndex1]),
           parseInt(row[options.roll.colomnIndex2]),

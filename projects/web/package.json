@@ -41,6 +41,7 @@
 	"type": "module",
 	"dependencies": {
 		"@floating-ui/dom": "1.x",
-		"fdj-forecast-core": "file:../core"
+		"fdj-forecast-core": "file:../core",
+		"moment": "^2.x"
 	}
 }

@@ -8,8 +8,9 @@ import {ModelsCommand} from './commands/models.command';
 import {
   RollNeuralNetworkService,
   MagicNeuralNetworkService,
-} from 'fdj-forecast-core';
+} from 'fdj-forecast-core/dist/src';
 import {TrainingService} from './services/training.service';
+import {DatasetValidateCommand} from './commands/dataset-validate.command';
 
 @Module({
   imports: [],
@@ -20,6 +21,7 @@ import {TrainingService} from './services/training.service';
     DatasetCommand,
     PredictRollCommand,
     PredictMagicCommand,
+    DatasetValidateCommand,
     ModelsCommand,
     RollNeuralNetworkService,
     MagicNeuralNetworkService,

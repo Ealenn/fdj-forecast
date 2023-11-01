@@ -1,10 +1,12 @@
 import {Command, CommandRunner, Option} from 'nest-commander';
 import * as fs from 'fs';
 import {LoggerService} from '../services/logger.service';
-import {RollNeuralNetworkService} from 'fdj-forecast-core';
+import {RollNeuralNetworkService} from 'fdj-forecast-core/dist/src';
+import * as moment from 'moment';
 
 interface PredictRollCommandOptions {
   readonly modelPath: string;
+  readonly date?: string;
 }
 
 @Command({
@@ -29,7 +31,10 @@ export class PredictRollCommand extends CommandRunner {
     );
     this.rollNeuralNetworkService.load(model);
     this.loggerService.info('Generate prediction...');
-    const prediction = this.rollNeuralNetworkService.forecast(new Date());
+    const date = options.date
+      ? moment(options.date, 'YYYY-MM-DD').toDate()
+      : new Date();
+    const prediction = this.rollNeuralNetworkService.forecast(date);
     this.loggerService.info(`Roll Number : ${prediction}`);
   }
 
@@ -46,5 +51,14 @@ export class PredictRollCommand extends CommandRunner {
     this.loggerService.fatal(
       `Folder ${modelPath} do not exist or is not valid JSON file.`
     );
+  }
+
+  @Option({
+    flags: '-d, --date [string]',
+    description: 'Date with YYYY-MM-DD format',
+    required: false,
+  })
+  parseDate(date?: string): string | null {
+    return date || null;
   }
 }
