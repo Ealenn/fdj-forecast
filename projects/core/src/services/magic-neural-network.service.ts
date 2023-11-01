@@ -1,16 +1,17 @@
 import {DatasetUnified} from '../models/dataset-unified';
 import * as Brain from 'brain.js';
-import {INeuralNetworkJSON} from 'brain.js/dist/neural-network';
-import {NeuralNetworkRollInput, NeuralNetworkRollOutput} from '../models';
+import {NeuralNetworkMagicInput, NeuralNetworkMagicOutput} from '../models';
 
 export class MagicNeuralNetworkService {
-  private readonly network: Brain.NeuralNetwork<
-    NeuralNetworkRollInput,
-    NeuralNetworkRollOutput
+  private readonly network: Brain.NeuralNetworkGPU<
+    NeuralNetworkMagicInput,
+    NeuralNetworkMagicOutput
   >;
 
   constructor() {
-    this.network = new Brain.NeuralNetwork({});
+    this.network = new Brain.NeuralNetworkGPU({
+      hiddenLayers: [3],
+    });
   }
 
   public train(
@@ -37,15 +38,12 @@ export class MagicNeuralNetworkService {
   }
 
   public load(json: unknown): void {
-    this.network.fromJSON(json as INeuralNetworkJSON);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.network.fromJSON(json as any);
   }
 
   public forecast(date: Date): number {
-    const result = this.network.run({
-      dd: date.getDate(),
-      mm: date.getMonth(),
-      yyyy: date.getFullYear(),
-    });
+    const result = this.network.run(this.getNeuralNetworkInput(date));
 
     const forecast = [];
     for (const number in result) {
@@ -61,27 +59,26 @@ export class MagicNeuralNetworkService {
       .map(x => x[0])[0] as number;
   }
 
-  public getNeuralNetworkInput(date: Date): NeuralNetworkRollInput {
-    return {
-      dd: date.getDate(),
-      mm: date.getMonth(),
-      yyyy: date.getFullYear(),
-    };
+  public getNeuralNetworkInput(date: Date): NeuralNetworkMagicInput {
+    const day = date.getDay();
+    const month = date.getMonth() + 1;
+
+    return [
+      Number.parseFloat(`0.${date.getFullYear()}`),
+      Number.parseFloat(`0.${month < 10 ? '0' + month : month}`),
+      Number.parseFloat(`0.${day < 10 ? '0' + day : day}`),
+    ];
   }
 
   public getNeuralNetworkOutput(
     dataset: DatasetUnified
-  ): NeuralNetworkRollOutput {
+  ): NeuralNetworkMagicOutput {
     const result = {};
     for (let number = 1; number <= 10; number++) {
       if (dataset.magic === number) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         result[number + ''] = 1;
-      } else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        result[number + ''] = 0;
       }
     }
 

@@ -1,16 +1,17 @@
 import {DatasetUnified} from '../models/dataset-unified';
 import * as Brain from 'brain.js';
-import {INeuralNetworkJSON} from 'brain.js/dist/neural-network';
 import {NeuralNetworkRollInput, NeuralNetworkRollOutput} from '../models';
 
 export class RollNeuralNetworkService {
-  private readonly network: Brain.NeuralNetwork<
+  private readonly network: Brain.NeuralNetworkGPU<
     NeuralNetworkRollInput,
     NeuralNetworkRollOutput
   >;
 
   constructor() {
-    this.network = new Brain.NeuralNetwork({});
+    this.network = new Brain.NeuralNetworkGPU({
+      hiddenLayers: [9],
+    });
   }
 
   public train(
@@ -37,15 +38,12 @@ export class RollNeuralNetworkService {
   }
 
   public load(json: unknown): void {
-    this.network.fromJSON(json as INeuralNetworkJSON);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.network.fromJSON(json as any);
   }
 
   public forecast(date: Date): number[] {
-    const result = this.network.run({
-      dd: date.getDate(),
-      mm: date.getMonth(),
-      yyyy: date.getFullYear(),
-    });
+    const result = this.network.run(this.getNeuralNetworkInput(date));
 
     const forecast = [];
     for (const number in result) {
@@ -62,11 +60,14 @@ export class RollNeuralNetworkService {
   }
 
   public getNeuralNetworkInput(date: Date): NeuralNetworkRollInput {
-    return {
-      dd: date.getDate(),
-      mm: date.getMonth(),
-      yyyy: date.getFullYear(),
-    };
+    const day = date.getDay();
+    const month = date.getMonth() + 1;
+
+    return [
+      Number.parseFloat(`0.${date.getFullYear()}`),
+      Number.parseFloat(`0.${month < 10 ? '0' + month : month}`),
+      Number.parseFloat(`0.${day < 10 ? '0' + day : day}`),
+    ];
   }
 
   public getNeuralNetworkOutput(
@@ -84,10 +85,6 @@ export class RollNeuralNetworkService {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         result[number + ''] = 1;
-      } else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        result[number + ''] = 0;
       }
     }
 

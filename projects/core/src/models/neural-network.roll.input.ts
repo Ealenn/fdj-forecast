@@ -1,5 +1,1 @@
-export type NeuralNetworkRollInput = {
-  dd: number;
-  mm: number;
-  yyyy: number;
-};
+export type NeuralNetworkRollInput = [number, number, number];

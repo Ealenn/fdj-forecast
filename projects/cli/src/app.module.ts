@@ -8,7 +8,7 @@ import {ModelsCommand} from './commands/models.command';
 import {
   RollNeuralNetworkService,
   MagicNeuralNetworkService,
-} from 'fdj-forecast-core';
+} from 'fdj-forecast-core/dist/src';
 import {TrainingService} from './services/training.service';
 
 @Module({
