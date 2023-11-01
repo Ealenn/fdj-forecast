@@ -78,11 +78,12 @@ Options:
   -h, --help               display help for command
 
 Commands:
-  dataset [options]        Dataset processing
-  predict-roll [options]   Predict Roll from Neural Network
-  predict-magic [options]  Predict Magic Number from Neural Network
-  models [options]         Generate Neural Network models
-  help [command]           display help for command
+  dataset [options]             Dataset processing
+  dataset-validate [options]    Validate dataset before processing
+  predict-roll [options]        Predict Roll from Neural Network
+  predict-magic [options]       Predict Magic Number from Neural Network
+  models [options]              Generate Neural Network models
+  help [command]                display help for command
 ```
 
 #### Debug
